@@ -1,0 +1,17 @@
+# Angular
+node_modules/
+dist/
+
+# .Net visual studio
+bin/
+obj/
+
+# Terraform secrets
+terraform.tfvars
+.terraform/
+
+# System logovi i za macOS ovaj donji
+*.log 
+*.DS_Store
+
+# Ne moramo detaljnu putanju da stavljamo npr za visual studio foldere, ovako ako opisemo foldere, svaki folder sa ovim imenom u bilo koja child foldera ce biti ignorisan

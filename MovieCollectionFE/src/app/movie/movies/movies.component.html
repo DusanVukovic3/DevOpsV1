@@ -1,0 +1,109 @@
+<div class="container">
+
+    <mat-toolbar class="toolbar">
+        <p class="userRoleParagraph">{{ userData.role }} user</p>
+        <span class="spacer"></span>
+        <button mat-button class="logOutButton" (click)="logOut()">Logout</button>
+    </mat-toolbar>
+
+    <h2 style="text-align: center; margin-top: 1%;" *ngIf="userData.role == 'Admin'">All the Movies in the World!</h2>
+    <h2 style="text-align: center; margin-top: 1%;" *ngIf="userData.role == 'Regular'">Collection for user:
+        {{userData.username}}</h2>
+
+
+    <div class="search-container">
+        <mat-form-field appearance="outline" class="inputF">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="searchDTO.nameSearch">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputF">
+            <mat-label>Author</mat-label>
+            <input matInput [(ngModel)]="searchDTO.authorSearch">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputF">
+            <mat-label>Genre</mat-label>
+            <mat-select [(ngModel)]="searchDTO.genreSearch">
+
+                <mat-option *ngFor="let genre of genres" [value]="genreMapping[genre]">
+                    {{ genre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputF">
+            <mat-label>Year of Release</mat-label>
+            <input matInput type="number" [(ngModel)]="searchDTO.yearSearch">
+        </mat-form-field>
+
+        <button mat-icon-button matTooltip="Search all movies" *ngIf="userData.role== 'Admin'" (click)="searchMovies()"
+            class="btn-search">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Search collection" *ngIf="userData.role== 'Regular'"
+            (click)="searchMoviesByUser()" class="btn-search">
+            <mat-icon>search</mat-icon>
+        </button>
+
+        <button mat-button class="settingsButton" matTooltip="Add movie to the user collection"
+            *ngIf="userData.role == 'Regular'" (click)="addMovieToCollection()"><mat-icon>movie</mat-icon></button>
+
+        <button mat-button class="otherUsersButton" matTooltip="Other users" *ngIf="userData.role == 'Regular'"
+            (click)="showOtherUsers()"><mat-icon>supervisor_account</mat-icon></button>
+
+    </div>
+
+    <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Author</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.author }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="genre">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Genre</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.genre }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="releaseDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Release Date</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.releaseDate | date : 'dd.MM.yyyy.'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" class="buttonContainer">
+            <mat-header-cell *matHeaderCellDef><button mat-raised-button matTooltip="Add new movie" class="addButton"
+                    *ngIf="userData.role === 'Admin'" (click)="addMovie()">
+                    <mat-icon>add_to_queue</mat-icon>
+                </button></mat-header-cell>
+
+            <mat-cell *matCellDef="let element">
+                <button mat-raised-button color="accent" class="button2" *ngIf="userData.role === 'Admin'"
+                    (click)="editMovie(element)">Edit
+                </button>
+                <button mat-raised-button color="warn" class="button3" *ngIf="userData.role === 'Admin'"
+                    (click)="deleteMovie(element)">Delete
+                </button>
+                <button mat-raised-button class="removeMovieButton" matTooltip="Remove movie from user collection"
+                    *ngIf="userData.role === 'Regular'"
+                    (click)="removeMovie(element)"><mat-icon>remove_circle_outline</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+
+</div>

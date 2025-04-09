@@ -1,0 +1,26 @@
+.header {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.headerText {
+  font-family: cursive;
+  font-size: large;
+  display: inline-block;
+}
+
+.dialog-container {
+  position: relative;
+}
+
+.tree-container {
+  margin-bottom: 60px; /* Adjust the margin to leave space for the button at the bottom */
+}
+
+.button {
+  position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}

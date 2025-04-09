@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="centered-form">
+        <form class="exampleForm">
+
+            <div class="form-field">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label class="label">Movie Name</mat-label>
+                    <input matInput [(ngModel)]="movieObject.name" name="name" required>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label class="label">Description</mat-label>
+                    <textarea matInput [(ngModel)]="movieObject.description" name="description"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label class="label">Author</mat-label>
+                    <input matInput [(ngModel)]="movieObject.author" name="author" required>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Select genre</mat-label>
+                    <mat-select [(value)]="movieObject.genre" name="genre" required>
+                        @for (genre of genres; track genre) {
+                        <mat-option [value]="genre">{{genre}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label class="label">Release Date</mat-label>
+                    <input matInput type="date" [(ngModel)]="movieObject.releaseDate" required name="releaseDate">
+                </mat-form-field>
+            </div>
+
+            <div class="button-container">
+                <button mat-raised-button color="primary" (click)="saveMovie()" class="button"
+                    [disabled]="movieObject.name == '' || movieObject.author == ''  || movieObject.releaseDate == '' || movieObject.genre == 'NoSelection' ">Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>

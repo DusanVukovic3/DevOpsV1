@@ -1,0 +1,44 @@
+<!-- YourComponent.html -->
+
+<div class="center-container">
+    <h1 class="naslov">Log in</h1>
+    <form class="login-form" #loginForm="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="userLogIn.username" name="username" placeholder="Name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="userLogIn.password" name="password" placeholder="Password" type="password"
+                required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="logButton" (click)="login(userLogIn)"
+            [disabled]="!loginForm.valid">Login</button>
+
+        <button mat-raised-button color="primary" class="logButton" (click)="getMe()">Check</button>
+    </form>
+
+    <h1 class="naslov">Register</h1>
+    <form class="register-form" #registerForm="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="userRegister.username" name="username" placeholder="Name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="userRegister.email" name="email" placeholder="Email" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="userRegister.password" name="password" placeholder="Password" type="password"
+                required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="regButton" (click)="register(userRegister)"
+            [disabled]="!registerForm.valid">Register</button>
+    </form>
+</div>

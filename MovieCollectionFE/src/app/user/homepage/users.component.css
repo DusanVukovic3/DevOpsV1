@@ -1,0 +1,35 @@
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%; 
+  }
+  
+  .login-form,
+  .register-form {
+    width: 20%;
+    margin-bottom: 10%; 
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  .mat-form-field {
+    width: 100%; 
+  }
+
+  .logButton{
+    width: 25%;
+    margin-left: 38%;
+    margin-bottom: 5%;
+  }
+
+  .regButton{
+    width: 25%;
+    margin-left: 38%;
+  }
+
+  .naslov{
+    font-weight: bold;
+    font-family: cursive;
+  }
+  

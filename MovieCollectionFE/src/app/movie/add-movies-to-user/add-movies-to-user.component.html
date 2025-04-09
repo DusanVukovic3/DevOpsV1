@@ -1,0 +1,44 @@
+<div class="container">
+    <h2 style="text-align: center; margin-top: 1%;">Browse all the movies that are not in {{data.username}}'s collection
+    </h2>
+
+    <mat-table matSort [dataSource]="dataSource">
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Author</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.author }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="genre">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Genre</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.genre }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="releaseDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Release Date</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.releaseDate | date : 'dd.MM.yyyy.'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" class="buttonContainer">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-stroked-button class="button2" color="primary" (click)="addMovieToTheUser(element)">Add
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+</div>
