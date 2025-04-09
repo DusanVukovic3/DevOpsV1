@@ -22,5 +22,7 @@ namespace Movie_Collection.Movies.DTO
         [Required]
         public DateOnly ReleaseDate { get; set; }
 
+
+        // Ucim github al preko konzole
     }
 }

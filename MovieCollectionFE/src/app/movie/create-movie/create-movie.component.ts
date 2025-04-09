@@ -30,7 +30,7 @@ export class CreateMovieComponent implements OnInit {
     this.getGenres();
   }
 
-
+  // Da li moze ove komentar?
   saveMovie() {
     this.movieService.createMovie(this.movieObject).subscribe(res => {
       alert(`Sucessfully added movie ${this.movieObject.name}`);

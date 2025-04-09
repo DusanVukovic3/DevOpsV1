@@ -21,3 +21,7 @@ resource "digitalocean_droplet" "vps" {
 output "vps_ip" {
   value = digitalocean_droplet.vps.ipv4_address
 }
+
+
+
+
