@@ -28,6 +28,7 @@ namespace Movie_Collection.Movies.Controller
             return Ok(_iMovieService.GetAll()); //Works
         }
 
+        //Dodamo komentar
 
         [HttpGet("byUsername/{username}")]
         [Authorize(Roles = "Regular")]
