@@ -8,3 +8,5 @@ variable "ssh_fingerprint" {
   description = "Your SSH key fingerprint in DigitalOcean"
 }
 
+
+
