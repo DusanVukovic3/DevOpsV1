@@ -73,7 +73,8 @@ builder.Services.AddCors(options =>
         {
             // Production environment - allow Netlify + custom domain
             b.WithOrigins(
-                 "https://krecimstanove.com")
+                "https://krecimstanove.com",
+                "https://www.krecimstanove.com")
              .AllowAnyHeader()
              .AllowAnyMethod()
              .AllowCredentials();
