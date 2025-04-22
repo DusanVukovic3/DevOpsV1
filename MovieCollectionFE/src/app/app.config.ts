@@ -5,8 +5,11 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './user/service/auth.interceptor';
 
+
+//everything that went into app.module now goes here!!!
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
   provideAnimations(),
-  provideHttpClient(withInterceptorsFromDi()), { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },]   //everything that went into app.module now goes here!!!
+  provideHttpClient(withInterceptorsFromDi()), { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
+     
 };

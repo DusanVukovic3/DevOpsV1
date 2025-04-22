@@ -55,18 +55,32 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
-builder.Services.AddCors(options =>         //For frontend connection
+builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAngularDevClient",
-    b =>
+    options.AddPolicy("FrontendPolicy", b =>
     {
-        b
-            .WithOrigins("https://glittery-frangipane-6deaab.netlify.app")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials(); 
+        var env = builder.Environment.EnvironmentName;
+
+        if (builder.Environment.IsDevelopment())
+        {
+            // Allow Angular running locally
+            b.WithOrigins("http://localhost:4200")
+             .AllowAnyHeader()
+             .AllowAnyMethod()
+             .AllowCredentials();
+        }
+        else
+        {
+            // Production environment - allow Netlify + custom domain
+            b.WithOrigins(
+                "https://krecimstanove.com",
+                "https://www.krecimstanove.com")
+             .AllowAnyHeader()
+             .AllowAnyMethod()
+             .AllowCredentials();
+        }
     });
-}); 
+});
 
 var app = builder.Build();
 
@@ -77,7 +91,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowAngularDevClient");
+app.UseCors("FrontendPolicy");
 
 app.UseHttpsRedirection();
 
@@ -86,4 +100,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+
+if (app.Environment.IsDevelopment())    // Na ovaj nacin, moze da radi i lokalno i na VPS
+{
+    app.Run(); 
+}
+else
+{
+    app.Run("http://0.0.0.0:5000"); 
+}
+
