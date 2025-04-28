@@ -98,6 +98,20 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
+using (var scope = app.Services.CreateScope())
+{
+    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    if (env.IsDevelopment())
+    {
+        db.Database.EnsureDeleted();    
+    }
+    db.Database.Migrate();            // applies migrations
+}
+
+
 app.MapControllers();
 
 

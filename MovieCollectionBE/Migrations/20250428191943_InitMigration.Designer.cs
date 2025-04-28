@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Movie_Collection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231112124409_InitManyMany")]
-    partial class InitManyMany
+    [Migration("20250428191943_InitMigration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
