@@ -28,6 +28,7 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'False'
         run: |
-          ansible-playbook \
-            -i ansible/inventory/prod.ini \
-            ansible/playbook.yml
+          cd ansible-vps
+          ansible-playbook -i inventory.ini site.yml
+        
+
