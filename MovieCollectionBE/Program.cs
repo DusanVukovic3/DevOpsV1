@@ -99,16 +99,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 
-using (var scope = app.Services.CreateScope())
+
+using (var scope = app.Services.CreateScope())  //  Svaki put na pokretanju aplikacije, obrisi stare podatke i pokreni update-database
 {
-    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-    if (env.IsDevelopment())
-    {
-        db.Database.EnsureDeleted();    
-    }
-    db.Database.Migrate();            // applies migrations
+    db.Database.EnsureDeleted();
+    db.Database.Migrate();
 }
 
 
