@@ -1,0 +1,6 @@
+- name: Deploy .Net BE to VPS
+  hosts: vps
+  vars:
+    ansible_user: root
+  roles:
+    - backend
