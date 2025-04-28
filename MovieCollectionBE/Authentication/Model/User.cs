@@ -33,6 +33,16 @@ namespace Movie_Collection.Authentication.Model
             Movies = movies;
         }
 
+        public User(Guid userId, string email, string username, byte[] passwordHash, byte[] passwordSalt, UserRole userRole)
+        {
+            UserId = userId;
+            Email = email;
+            Username = username;
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
+            UserRole = userRole;
+        }
+
         public void Update(User entity)
         {
             Username = entity.Username;
