@@ -17,7 +17,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { SearchDTO } from '../model/search.movies.model';
 import { AuthService } from '../../user/service/auth.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { jwtDecode } from "jwt-decode";
 import { TokenClaims } from '../model/token.claims.model';
 import { AddMoviesToUserComponent } from '../add-movies-to-user/add-movies-to-user.component';
 import { AddMovieUserDTO } from '../../user/model/add.movie.user.DTO';

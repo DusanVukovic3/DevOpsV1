@@ -10,7 +10,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MoviesComponent } from '../movies/movies.component';
 
 @Component({
   selector: 'app-create-movie',
