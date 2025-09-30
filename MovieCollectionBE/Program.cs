@@ -57,32 +57,19 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", b =>
     {
-        var env = builder.Environment.EnvironmentName;
-
-        if (builder.Environment.IsDevelopment())
-        {
-            // Allow Angular running locally
-            b.WithOrigins("http://localhost:4200")
-             .AllowAnyHeader()
-             .AllowAnyMethod()
-             .AllowCredentials();
-        }
-        else
-        {
-            // Production environment - allow Netlify + custom domain
-            b.WithOrigins(
-                "https://krecimstanove.com",
-                "https://www.krecimstanove.com")
-             .AllowAnyHeader()
-             .AllowAnyMethod()
-             .AllowCredentials();
-        }
+        b.WithOrigins(allowedOrigins!)
+         .AllowAnyHeader()
+         .AllowAnyMethod()
+         .AllowCredentials();
     });
 });
+
 
 var app = builder.Build();
 
