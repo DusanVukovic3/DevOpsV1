@@ -22,7 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
@@ -82,7 +82,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("FrontendPolicy");
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -127,12 +127,5 @@ using (var scope = app.Services.CreateScope())  // Kreiranje prvog korisnika
 app.MapControllers();
 
 
-if (app.Environment.IsDevelopment())    // Na ovaj nacin, moze da radi i lokalno i na VPS
-{
-    app.Run(); 
-}
-else
-{
-    app.Run("http://0.0.0.0:5000"); 
-}
+app.Run("http://0.0.0.0:5000");
 
